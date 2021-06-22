@@ -1,10 +1,14 @@
 import 'reflect-metadata'
 import express from 'express';
 
+import { router } from './routes'
+
 //nos leva diretamente pro index
 import './database'
 
 const app = express();
+
+app.use(express.json())
 /**
  * Tipos de parametros:
  * Routes Params => fazem parte da rota. tipo o id na url => "/test/{id}"
@@ -15,6 +19,8 @@ const app = express();
  * }
  */
 
+//inserir todas as rotas farão parte do projeto
+app.use(router)
 
 app.listen(3000, () => {
   console.log('server is running')
