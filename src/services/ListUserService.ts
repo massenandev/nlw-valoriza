@@ -1,6 +1,6 @@
 import { getCustomRepository } from "typeorm"
 import { UsersRepositories } from "../repositories/UsersRepositories"
-
+import { classToPlain } from 'class-transformer'
 
 class ListUserService {
   async execute(){
@@ -8,7 +8,8 @@ class ListUserService {
 
     const users = await usersRepositories.find()
 
-    return users
+    //pra não retornar as senhas
+    return classToPlain(users)
   }
 }
 
