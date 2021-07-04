@@ -1,8 +1,11 @@
 import 'reflect-metadata'
 import express, { Request, Response, NextFunction } from 'express';
 import 'express-async-errors'
+import swaggerUi from 'swagger-ui-express'
 
 import { router } from './routes'
+
+import swaggerDocs from './swagger.json'
 
 //nos leva diretamente pro index
 import './database'
@@ -19,6 +22,13 @@ app.use(express.json())
  * "description": "teclado bom"
  * }
  */
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
+app.get('/terms', (req, res) => {
+  return res.json({
+    message: "Termos de serviço"
+  })
+})
 
 //inserir todas as rotas farão parte do projeto
 app.use(router)

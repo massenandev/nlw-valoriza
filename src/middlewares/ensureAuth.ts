@@ -33,8 +33,4 @@ export function ensureAuth(
   }catch(err) {
     return response.status(401).end() 
   }
-
-
-
-
 }
